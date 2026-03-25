@@ -1,0 +1,50 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "database"
+    ports:
+      - 5432:5432
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data'
+      - './Data:/docker-data'  # Монтируем папку Data в контейнер
+      - './Scripts:/docker-entrypoint-initdb.d'  # Скрипты выполнятся при создании БД
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d database"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    tty: true
+    networks:
+      - my_network  
+
+  redis: 
+    image: 'redis'
+    container_name: redis
+    restart: always
+    healthcheck: 
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    ports: 
+      - '6379:6379'
+    tty: true
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
