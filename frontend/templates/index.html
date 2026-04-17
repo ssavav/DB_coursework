@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Управление Спортивными Турнирами</title>
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.png">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/tournament.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn"id="login-tag">Турниры</a>
+                <a href="match.html" сlass="login-btn"id="login-tag">Матчи</a>
+            </div>
+            <div class="col-6" >
+                <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
+                
+            </div>
+            
+            <div class="col-2 login-btn">
+                <a href="login.html" сlass="login-btn"id="login-tag">Log in</a>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class="container main-part">
+        <div class="col-1">
+
+        </div>
+
+        <div class="col-8 ">
+            <div class="tournament-inpt-group">
+                <input type="text" id="name-inpt"placeholder="Введите название турнира">
+
+                <select name="status" id="status-inpt">
+                    <option value="">Все статусы</option>
+                    <option value="registration">Открыта регистрация</option>
+                    <option value="active">Активный</option>
+                    <option value="completed">Завершен</option>
+                </select>
+
+                <button id="search-btn">
+                    Поиск
+                </button>
+            </div>
+            
+         <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Вид спорта</th>
+                        <th>Дата начала</th>
+                        <th>Статус</th>
+                        <th>Призовой фонд</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <td><a href="tournament.html"><strong>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto obcaecati provident sint quisquam iusto nihil veritatis veniam tempore pariatur dolor quasi voluptas quidem, possimus fuga error dicta dolorem doloremque quaerat!Бебра турнир</strong></a></td>
+                    <td>бебра спорт</td>
+                    <td>12.04.04</td>
+                    <td><span class="badge active">Активный</span></td>
+                    <td>1000 ₽</td>
+                </tbody>
+                <tbody id="tableBody">
+                    <td><a href="tournament.html"><strong>Бкбра турнир</strong></a></td>
+                    <td>бебра спорт</td>
+                    <td>12.04.04</td>
+                    <td><span class="badge registration">Регистрация</span></td>
+                    <td>1000 ₽</td>
+                </tbody>
+                <tbody id="tableBody">
+                    <td><a href="tournament.html"><strong>Бкбра турнир</strong></a></td>
+                    <td>бебра спорт</td>
+                    <td>12.04.04</td>
+                    <td><span class="badge cancelled">Отменён</span></td>
+                    <td>1000 ₽</td>
+                </tbody>
+                <tbody id="tableBody">
+                    <td><a href="tournament.html"><strong>Бкбра турнир</strong></a></td>
+                    <td>бебра спорт</td>
+                    <td>12.04.04</td>
+                    <td><span class="badge completed">Завершён</span></td>
+                    <td>1000 ₽</td>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1">
+            
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+.tournament-inpt-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    margin: 100px 0px 0px ;
+    padding: 20px;
+    background-color:  #DCEFF5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#name-inpt, 
+#status-inpt,
+#search-btn {
+    height: 2.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0;  
+    border: 2px solid #cccccc;
+    border-radius: 4px; 
+}
+
+#name-inpt {
+    width: 550px;
+    padding: 0 10px;
+}
+
+#status-inpt {
+    width: 200px;
+    padding: 0 5px;
+}
+
+#search-btn {
+    width: 100px;
+    padding: 0 5px;
+}
+
+table {
+    margin-top: 15px;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-radius: 10px;
+    text-align: left;
+    background: #DCEFF5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+th {
+    padding: 10px;
+    border-bottom: 2px solid #b2c4c9;
+    border-radius: 4px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#tournament-name-tag {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    row-gap: 10px;
+    align-items: start;
+    padding: 20px;
+    background-color:  #DCEFF5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.param-name {
+    font-weight: bold;
+    color: #555;
+    text-align: right;
+    padding-right: 50px;
+}
+
+.param-value {
+    color: #000;
+}
+
+.sponsor-tag a {
+    display: inline-block; 
+    text-decoration: none; 
+    color: #2196F3; 
+    font-weight: bold;
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+td a{
+    display: inline-block; 
+    text-decoration: none; 
+    color: #2196F3; 
+    font-weight: 500;
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+td a:hover{
+    transform: translateY(-3px); 
+    color: #1976D2; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.sponsor-tag a:hover {
+    transform: translateY(-3px); 
+    color: #1976D2; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+.badge{
+    width: 80px;
+    text-align: center;
+    padding: 4px 10px; 
+    display: inline-block;
+    border-radius: 20px;
+    color: white;
+    font-size: small;
+}
+
+@keyframes change-color{
+    0%{
+        background-color: #4CAF50;
+    }
+    
+    50%{
+        background-color: #3d8b40;
+        
+    }
+    100%{
+        background-color: #4CAF50;
+        /* background-color: #3d8b40; */
+
+    }
+}
+
+.badge.active {
+    background-color: #4CAF50;
+    animation: change-color 2s infinite;
+
+}
+
+.badge.registration { 
+    background-color: #FF9800; /* Оранжевый (ил можно использовать ваш синий #2196F3) */
+}
+
+.badge.completed {
+    background-color: #9E9E9E; /* Спокойный серый */
+}
+
+.badge.cancelled {
+    background-color: #F44336; /* Красный */
+}

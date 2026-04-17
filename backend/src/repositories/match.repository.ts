@@ -1,5 +1,5 @@
 import pool from "../config/db";
-import { MatchFilters } from "../types/match.types";
+import { MatchFilters, TeamPair } from "../types/match.types";
 
 async function getMatches(filters: MatchFilters){
     try{
@@ -51,6 +51,11 @@ async function getMatches(filters: MatchFilters){
     }catch(error){
         throw error;
     }
+}
+
+async function getMatchHistory(teams: TeamPair){
+    
+
 }
 
 export default getMatches;

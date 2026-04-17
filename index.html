@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Управление турнирами</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .filters {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    .filters input {
+      flex: 1;
+      padding: 8px;
+    }
+    .filters select {
+      padding: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      padding: 10px;
+      border-bottom: 2px solid #ccc;
+      background: #eee;
+    }
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .badge {
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: #fff;
+    }
+    .badge-registration { background-color: #2196F3; }
+    .badge-active { background-color: #4CAF50; }
+    .badge-completed { background-color: #9E9E9E; }
+    .empty-message {
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏆 Управление спортивными турнирами</h1>
+  
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Поиск по названию...">
+    <select id="statusFilter">
+      <option value="">Все статусы</option>
+      <option value="registration">Открыта регистрация</option>
+      <option value="active">Активный</option>
+      <option value="completed">Завершен</option>
+    </select>
+    <select id="sportFilter">
+      <option value="">Все виды спорта</option>
+      <option value="Футбол">Футбол</option>
+      <option value="Баскетбол">Баскетбол</option>
+      <option value="Киберспорт">Киберспорт</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Вид спорта</th>
+        <th>Дата начала</th>
+        <th>Статус</th>
+        <th>Призовой фонд</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Строки таблицы будут добавляться сюда через JavaScript -->
+    </tbody>
+  </table>
+
+  <script>
+    // 1. Данные
+    const mockTournaments = [
+      { id: 1, name: "Летний Кубок Бауманки", sport_type: "Футбол", start_date: "2026-06-01", status: "registration", prize_pool: 50000 },
+      { id: 2, name: "Cyber League 2026", sport_type: "Киберспорт", start_date: "2026-05-15", status: "active", prize_pool: 150000 },
+      { id: 3, name: "Городской турнир", sport_type: "Баскетбол", start_date: "2026-04-10", status: "completed", prize_pool: 30000 },
+      { id: 4, name: "Dota 2 Spring Major", sport_type: "Киберспорт", start_date: "2026-07-20", status: "registration", prize_pool: 500000 },
+    ];
+
+    // 2. DOM Элементы
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    const sportFilter = document.getElementById('sportFilter');
+    const tableBody = document.getElementById('tableBody');
+
+    // 3. Функция рендера таблицы
+    function renderTable(tournaments) {
+      tableBody.innerHTML = ''; // Очищаем таблицу перед обновлением
+
+      if (tournaments.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" class="empty-message">Турниры не найдены 😔</td></tr>';
+        return;
+      }
+
+      tournaments.forEach(t => {
+        const tr = document.createElement('tr');
+        
+        // Определяем цвет бейджа статуса
+        let badgeClass = 'badge-completed';
+        if (t.status === 'registration') badgeClass = 'badge-registration';
+        else if (t.status === 'active') badgeClass = 'badge-active';
+
+        tr.innerHTML = `
+          <td><strong>${t.name}</strong></td>
+          <td>${t.sport_type}</td>
+          <td>${t.start_date}</td>
+          <td><span class="badge ${badgeClass}">${t.status}</span></td>
+          <td>${t.prize_pool.toLocaleString()} ₽</td>
+        `;
+
+        tableBody.appendChild(tr);
+      });
+    }
+
+    // 4. Функция фильтрации
+    function applyFilters() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const statusValue = statusFilter.value;
+      const sportValue = sportFilter.value;
+
+      const filtered = mockTournaments.filter(tournament => {
+        const matchName = tournament.name.toLowerCase().includes(searchTerm);
+        const matchStatus = statusValue ? tournament.status === statusValue : true;
+        const matchSport = sportValue ? tournament.sport_type === sportValue : true;
+        
+        return matchName && matchStatus && matchSport;
+      });
+
+      renderTable(filtered);
+    }
+
+    // 5. Обработчики событий (Слушаем изменения в фильтрах)
+    searchInput.addEventListener('input', applyFilters);
+    statusFilter.addEventListener('change', applyFilters);
+    sportFilter.addEventListener('change', applyFilters);
+
+    // 6. Первичный рендер при загрузке страницы
+    renderTable(mockTournaments);
+  </script>
+
+</body>
+</html> 

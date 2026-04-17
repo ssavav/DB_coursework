@@ -1,0 +1,335 @@
+\chapter{Конструкторская часть}
+
+\section{Описание сущностей базы данных}
+
+% Увеличиваем высоту строк для красоты и чтобы текст не «прилипал» к линиям
+\renewcommand{\arraystretch}{1.3}
+
+В соответствии с таблицей~\ref{tb:data}, содержащей данные, которые должны находиться в базе данных, можно выделить следующие таблицы:
+\begin{enumerate}
+	\item organizer -- таблица организаторов турниров;
+	\item location -- таблица площадок (локаций) проведения матчей;
+	\item team -- таблица спортивных команд;
+	\item referee -- таблица судей;
+	\item tournament -- таблица спортивных турниров;
+	\item match -- таблица матчей турнира;
+	\item player -- таблица игроков команд;
+	\item coach -- таблица тренеров команд;
+	\item tournament\_registration -- таблица регистраций команд на турнир;
+	\item match\_participant -- таблица команд-участников матчей и их результатов;
+	\item match\_referee -- таблица назначения судей на конкретные матчи.
+\end{enumerate}
+
+На основе информации о выбранной СУБД и представленной на рисунке~\ref{fig:er} диаграмме сущность-связь, мы определим для каждой из указанных таблиц структуру столбцов, их типы и установим соответствующие ограничения, которые представлены в таблицах~\ref{table:db:organizer}--\ref{table:db:match_referee}.
+
+% ----------------------------------------------------
+% Таблица 1: organizer
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы организаторов (organizer)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор организатора \\
+			\hline
+			company\_name & text & NOT NULL & Название компании \\
+			\hline
+			email & text & NOT NULL, UNIQUE, CHECK (формат email) & Электронная почта \\
+			\hline
+			phone & text & --- & Номер телефона \\
+			\hline
+		\end{tabular}
+		\label{table:db:organizer}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 2: location
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы площадок (location)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор площадки \\
+			\hline
+			name & text & NOT NULL & Название \\
+			\hline
+			city & text & NOT NULL & Город \\
+			\hline
+			capacity & bigint & CHECK (capacity $>$ 0) & Вместимость \\
+			\hline
+		\end{tabular}
+		\label{table:db:location}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 3: team
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы команд (team)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор команды \\
+			\hline
+			name & text & NOT NULL & Название команды \\
+			\hline
+			country & text & NOT NULL & Страна \\
+			\hline
+			foundation\_date & date & --- & Дата основания \\
+			\hline
+		\end{tabular}
+		\label{table:db:team}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 4: referee
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы судей (referee)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор судьи \\
+			\hline
+			full\_name & text & NOT NULL & ФИО судьи \\
+			\hline
+			category & text & NOT NULL & Категория \\
+			\hline
+			experience\_years & int & DEFAULT 0, CHECK ($\ge$ 0) & Опыт работы (в годах) \\
+			\hline
+		\end{tabular}
+		\label{table:db:referee}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 5: tournament
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы турниров (tournament)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор турнира \\
+			\hline
+			organizer\_id & bigint & NOT NULL, FK (organizer) ON DELETE CASCADE & Идентификатор организатора \\
+			\hline
+			name & text & NOT NULL & Название турнира \\
+			\hline
+			sport\_type & text & NOT NULL & Вид спорта \\
+			\hline
+			start\_date & date & NOT NULL, CHECK ($\le$ end\_date) & Дата начала \\
+			\hline
+			end\_date & date & NOT NULL & Дата окончания \\
+			\hline
+			prize\_pool & numeric & DEFAULT 0.00, CHECK ($\ge$ 0) & Призовой фонд \\
+			\hline
+			status & text & DEFAULT 'registration', CHECK (status IN ...) & Статус турнира \\
+			\hline
+		\end{tabular}
+		\label{table:db:tournament}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 6: match
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы матчей (match)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор матча \\
+			\hline
+			tournament\_id & bigint & NOT NULL, FK (tournament) ON DELETE CASCADE & Идентификатор турнира \\
+			\hline
+			location\_id & bigint & FK (location) ON DELETE SET NULL & Идентификатор площадки \\
+			\hline
+			match\_date & timestamp & NOT NULL & Дата и время проведения \\
+			\hline
+			stage\_name & text & NOT NULL & Стадия турнира \\
+			\hline
+			status & text & DEFAULT 'scheduled', CHECK (status IN ...) & Статус матча \\
+			\hline
+		\end{tabular}
+		\label{table:db:match}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 7: player
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы игроков (player)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор игрока \\
+			\hline
+			team\_id & bigint & FK (team) ON DELETE SET NULL & Идентификатор команды \\
+			\hline
+			nickname & text & NOT NULL & Никнейм \\
+			\hline
+			real\_name & text & NOT NULL & Настоящее имя \\
+			\hline
+			birth\_date & date & NOT NULL & Дата рождения \\
+			\hline
+		\end{tabular}
+		\label{table:db:player}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 8: coach
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы тренеров (coach)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & bigint & NOT NULL, PRIMARY KEY & Идентификатор тренера \\
+			\hline
+			team\_id & bigint & FK (team) ON DELETE SET NULL & Идентификатор команды \\
+			\hline
+			first\_name & text & NOT NULL & Имя \\
+			\hline
+			last\_name & text & NOT NULL & Фамилия \\
+			\hline
+			experience\_years & int & DEFAULT 0, CHECK ($\ge$ 0) & Опыт работы (в годах) \\
+			\hline
+		\end{tabular}
+		\label{table:db:coach}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 9: tournament_registration
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы регистрации на турнир (tournament\_registration)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			tournament\_id & bigint & NOT NULL, PK, FK (tournament) ON DELETE CASCADE & Идентификатор турнира \\
+			\hline
+			team\_id & bigint & NOT NULL, PK, FK (team) ON DELETE CASCADE & Идентификатор команды \\
+			\hline
+			registration\_date & timestamp & DEFAULT current\_timestamp & Дата регистрации \\
+			\hline
+			status\_registration & text & DEFAULT 'pending', CHECK (status IN ...) & Статус заявки \\
+			\hline
+		\end{tabular}
+		\label{table:db:tournament_registration}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 10: match_participant
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы участников матча (match\_participant)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			match\_id & bigint & NOT NULL, PK, FK (match) ON DELETE CASCADE & Идентификатор матча \\
+			\hline
+			team\_id & bigint & NOT NULL, PK, FK (team) ON DELETE CASCADE & Идентификатор команды \\
+			\hline
+			score & int & DEFAULT 0, CHECK ($\ge$ 0) & Счет команды \\
+			\hline
+		\end{tabular}
+		\label{table:db:match_participant}
+	\end{center}
+\end{table}
+
+% ----------------------------------------------------
+% Таблица 11: match_referee
+% ----------------------------------------------------
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы судей матча (match\_referee)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			match\_id & bigint & NOT NULL, PK, FK (match) ON DELETE CASCADE & Идентификатор матча \\
+			\hline
+			referee\_id & bigint & NOT NULL, PK, FK (referee) ON DELETE CASCADE & Идентификатор судьи \\
+			\hline
+			role & text & NOT NULL & Роль судьи \\
+			\hline
+		\end{tabular}
+		\label{table:db:match_referee}
+	\end{center}
+\end{table}
+	
+	
+\section{Ролевая модель}
+
+Для реализации описанной логики на уровне базы данных (PostgreSQL) проектируется ролевая модель, включающая 3 роли базы данных. Разграничение доступа к объектам (таблицам и представлениям) выглядит следующим образом:
+
+\begin{enumerate}
+	\item Неавторизованный пользователь -- имеет права доступа только на чтение к таблицам tournament, match, team, player, location, match\_participant. Запрещены любые операции изменения данных.
+	
+	\item Представитель команды -- те же права, что и у неавторизованного пользователя, при этом жобавля.тся возможности для добавления, обновления и удаления данных из таблиц tournament\_registration player
+	
+	\item Организатор турнира -- имеет полный доступ в базе данных.
+\end{enumerate}
+% **1. Роль `guest_role` (Гость)**
+% * **Права:** Только чтение (`SELECT`).
+% * **Доступ к таблицам:** `tournament`, `match`, `team`, `player`, `location`, `match_participant` (расписание и результаты).
+% * **Описание:** Запрещены любые операции изменения данных. Покрывает потребности неавторизованных пользователей в получении статистики.
+
+% **2. Роль `team_manager_role` (Участник / Представитель команды)**
+% * **Права:** Чтение (`SELECT`), добавление (`INSERT`), изменение (`UPDATE`) и удаление (`DELETE`).
+% * **Доступ к таблицам:** 
+% * `SELECT` — ко всем открытым данным (как у гостя).
+% * `INSERT`, `UPDATE`, `DELETE` — к таблицам `tournament_registration` (управление заявками) и `player` (управление составом своей команды).
+% * **Описание:** Позволяет взаимодействовать с турниром и управлять только сущностями, относящимися к конкретной команде (через проверки на стороне приложения или RLS в БД).
+
+% **3. Роль `organizer_role` (Организатор / Администратор)**
+% * **Права:** Полный CRUD-доступ (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) + `EXECUTE` (запуск процедур).
+% * **Доступ к таблицам:** Ко всем таблицам БД схемы `sport`.
+% * **Описание:** Обладает правами на генерацию расписания (вызов хранимых процедур), занесение результатов матчей (`match_participant`), изменение статусов турниров и управление справочниками (судьи, локации, организаторы).
+
+	
+\section{Используемый триггер}
+
+В базе данных будет присутствовать триггер, который активируется автоматически после завершения матча-финала турнира. Этот триггер автоматически завершает турнир, чей финал был окончен, что позволяет обеспечить актуальность данных.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.55\textwidth]{trig_final}
+	\caption{Схема алгоритма триггера, обновляющего статус турнира после конца матча-финала}
+	\label{fig:trig_final}
+\end{figure}
+
+\section*{Вывод}
+
+<что сделали в конструкторке и получили в результате, кратко>
+
+\clearpage

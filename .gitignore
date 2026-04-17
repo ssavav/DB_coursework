@@ -29,3 +29,7 @@ node_modules/
 venv/
 data/
 .dbeaver/
+*.toc
+*.aux
+*.synctex.gz
+*.out

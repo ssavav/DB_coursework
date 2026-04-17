@@ -8,3 +8,8 @@ export interface MatchFilters {
     date?: string | undefined,
     status?: string | undefined
 }
+
+export interface TeamPair{
+    team1?: string | undefined,
+    team2?: string | undefined
+}

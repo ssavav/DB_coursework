@@ -1,0 +1,263 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    margin-top: 30px;
+    height: 50px;
+    /* background-color: #EAF4F8; */
+    /* border-bottom: 3px solid lightslategray; */
+}
+
+.main-part{
+    margin-top: 10px;
+    min-height: 100vh-50px;
+    /* background-color: gray; */
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+
+#login-tag {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none; 
+    color: black;
+    
+    padding: 5px 15px; 
+    border: 2px solid black;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+
+#login-tag:hover {
+    background-color: lightblue;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    
+}
+
+#search-btn{
+    background-color: #ffffff;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+#search-btn:hover{
+    background-color: #5FCF65;
+    color: white;
+    transform: translateY(-2px);
+}
+
+#title-tag {
+    display: flex;
+    font-size: 35px;
+    font-weight: bold;
+    justify-content: center;
+    /* text-align: justify;
+    text-align-last: justify; */
+    text-decoration: none; 
+    color: black;          
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+}
+
+
+.col-1{
+    grid-column: span 1;
+}
+
+.col-2{
+    grid-column: span 2;
+}
+.col-3{
+    grid-column: span 3;
+}
+
+.col-6{
+    grid-column: span 6;
+}
+
+.col-7{
+    grid-column: span 7;
+}
+
+.col-8{
+    grid-column: span 8;
+}
+
+
+.tournament-inpt-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    margin: 100px 0px 0px ;
+    padding: 20px;
+    /* height: 2rem; */
+    background-color:  #DCEFF5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#name-inpt, 
+#status-inpt,
+#search-btn {
+    height: 2.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0;  
+    border: 2px solid #cccccc;
+    border-radius: 4px; 
+}
+
+#name-inpt {
+    width: 550px;
+    padding: 0 10px;
+}
+
+#status-inpt {
+    width: 200px;
+    padding: 0 5px;
+}
+
+#search-btn {
+    width: 100px;
+    padding: 0 5px;
+}
+
+
+/* Выравнивание формы по центру экрана */
+.login-wrapper {
+    grid-column: span 10; /* Занимает всю ширину грид-контейнера */
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center;     /* Центрирование по вертикали */
+    min-height: calc(100vh - 150px); /* Высота экрана минус примерная высота шапки и отступы */
+}
+
+/* Стили самого "квадратика" */
+.login-box {
+    background-color: #DCEFF5; /* Цвет как у фильтров на главной */
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px; /* Фиксированная ширина квадратика */
+    /* Легкая тень для красоты */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Заголовок формы */
+.login-box h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Поля ввода (используем уже знакомые настройки высоты и рамок) */
+.login-input {
+    height: 2.5rem;
+    box-sizing: border-box;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    padding: 0 10px;
+    width: 100%; 
+}
+
+
+.login-submit {
+    height: 2.5rem;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-submit:hover {
+    background-color: #1976D2;  /* Синий цвет кнопки */
+}
+
+table {
+    margin-top: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    text-align: left;
+    background: #DCEFF5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+th {
+    padding: 10px;
+    border-bottom: 2px solid #b2c4c9;
+    border-radius: 4px;
+}
+td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#tournament-name-tag{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.details-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    row-gap: 10px;
+    align-items: start;
+    padding: 20px;
+    background-color:  #DCEFF5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.param-name {
+    font-weight: bold;
+    color: #555;
+    text-align: right;
+    padding-right: 50px;
+
+}
+
+.param-value {
+    color: #000;
+}
+
+.sponsor-tag a {
+    display: inline-block; 
+    text-decoration: none; 
+    color: #2196F3; 
+    font-weight: bold;
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    
+    
+    transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.sponsor-tag a:hover {
+    transform: translateY(-3px); 
+    color: #1976D2; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
