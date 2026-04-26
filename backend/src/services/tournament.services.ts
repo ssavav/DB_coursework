@@ -1,14 +1,26 @@
-import getAllTournaments from "../repositories/tournament.repository";
+import * as tournamentRepository from "../repositories/tournament.repository";
 import { TournamentFilters } from "../types/tournament.types";
 // тут бизнес логика какая то как то обрабатываем полученные рещультаты
 
-async function getTournaments(filters: TournamentFilters){
+async function getAllTournaments(filters: TournamentFilters){
     try{
-        const res = await getAllTournaments(filters);
+        const res = await tournamentRepository.getAllTournaments(filters);
         return res;
     } catch(error){
         return error;
     }
 }
 
-export default getTournaments;
+async function getTournamentByID(id: number){
+    try{
+        const res = await tournamentRepository.getTournamentByID(id);
+        return res;
+    } catch(error){
+        return error;
+    }
+}
+
+export {
+    getTournamentByID,
+    getAllTournaments
+};

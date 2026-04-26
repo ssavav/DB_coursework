@@ -38,7 +38,7 @@
 			\hline
 			email & text & NOT NULL, UNIQUE, CHECK (формат email) & Электронная почта \\
 			\hline
-			phone & text & --- & Номер телефона \\
+			phone & text & CHECK(формат телефона) & Номер телефона \\
 			\hline
 		\end{tabular}
 		\label{table:db:organizer}
@@ -84,7 +84,7 @@
 			\hline
 			country & text & NOT NULL & Страна \\
 			\hline
-			foundation\_date & date & --- & Дата основания \\
+			foundation\_date & date & NOT NULL & Дата основания \\
 			\hline
 		\end{tabular}
 		\label{table:db:team}
@@ -222,6 +222,24 @@
 	\end{center}
 \end{table}
 
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы судей матча (match\_referee)}
+		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			match\_id & bigint & NOT NULL, PK, FK (match) ON DELETE CASCADE & Идентификатор матча \\
+			\hline
+			referee\_id & bigint & NOT NULL, PK, FK (referee) ON DELETE CASCADE & Идентификатор судьи \\
+			\hline
+			role & text & NOT NULL & Роль судьи \\
+			\hline
+		\end{tabular}
+		\label{table:db:match_referee}
+	\end{center}
+\end{table}
+
 % ----------------------------------------------------
 % Таблица 9: tournament_registration
 % ----------------------------------------------------
@@ -269,33 +287,44 @@
 % ----------------------------------------------------
 % Таблица 11: match_referee
 % ----------------------------------------------------
-\begin{table}[H]
-	\begin{center}
-		\caption{Информация о столбцах таблицы судей матча (match\_referee)}
-		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
-			\hline
-			Столбец & Тип данных & Ограничения & Значение \\
-			\hline
-			match\_id & bigint & NOT NULL, PK, FK (match) ON DELETE CASCADE & Идентификатор матча \\
-			\hline
-			referee\_id & bigint & NOT NULL, PK, FK (referee) ON DELETE CASCADE & Идентификатор судьи \\
-			\hline
-			role & text & NOT NULL & Роль судьи \\
-			\hline
-		\end{tabular}
-		\label{table:db:match_referee}
-	\end{center}
-\end{table}
+%\begin{table}[H]
+%	\begin{center}
+%		\caption{Информация о столбцах таблицы судей матча (match\_referee)}
+%		\begin{tabular}{|c|c|>{\centering\arraybackslash}m{5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+%			\hline
+%			Столбец & Тип данных & Ограничения & Значение \\
+%			\hline
+%			match\_id & bigint & NOT NULL, PK, FK (match) ON DELETE CASCADE & Идентификатор матча \\
+%			\hline
+%			referee\_id & bigint & NOT NULL, PK, FK (referee) ON DELETE CASCADE & Идентификатор судьи \\
+%			\hline
+%			role & text & NOT NULL & Роль судьи \\
+%			\hline
+%		\end{tabular}
+%		\label{table:db:match_referee}
+%	\end{center}
+%\end{table}
+
+На рисунке~\ref{fig:erd} приведена ER-диаграмма базы данных.
 	
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth]{erd1}
+	\caption{Схема базы данных}
+	\label{fig:erd}
+\end{figure}
+
 	
+\newpage
 \section{Ролевая модель}
 
-Для реализации описанной логики на уровне базы данных (PostgreSQL) проектируется ролевая модель, включающая 3 роли базы данных. Разграничение доступа к объектам (таблицам и представлениям) выглядит следующим образом:
+Для реализации описанной логики на уровне базы данных (PostgreSQL) проектируется ролевая модель, включающая 3 роли базы данных. Разграничение доступа к объектам (таблицам и представлениям) выглядит следующим образом.
 
 \begin{enumerate}
 	\item Неавторизованный пользователь -- имеет права доступа только на чтение к таблицам tournament, match, team, player, location, match\_participant. Запрещены любые операции изменения данных.
 	
-	\item Представитель команды -- те же права, что и у неавторизованного пользователя, при этом жобавля.тся возможности для добавления, обновления и удаления данных из таблиц tournament\_registration player
+	\item Представитель команды -- те же права, что и у неавторизованного пользователя, при этом появляются возможности для добавления, обновления и удаления данных из таблиц tournament\_registration player
 	
 	\item Организатор турнира -- имеет полный доступ в базе данных.
 \end{enumerate}
@@ -330,6 +359,6 @@
 
 \section*{Вывод}
 
-<что сделали в конструкторке и получили в результате, кратко>
-
+В данном разделе были описаны все сущности базы данных на основе
+анализа предметной области, представлена ER-диаграмма сущностей, описана ролевая модель. Также был спроектирован необходимый триггер.
 \clearpage

@@ -1,6 +1,54 @@
 import pool from '../config/db'
+import organizerRoutes from '../routes/organizer.routes';
 import { TournamentFilters } from '../types/tournament.types';
-// тут получается взаимодействем с бд
+
+
+async function getTournamentByID(id: number) {
+    try{
+        const values: any[] = [];
+        let query: string = `
+            select 
+                t.*,
+                o.company_name as organizer_company_name
+            from 
+                sport.tournament t
+            left join 
+                sport.organizer o on t.organizer_id = o.id
+            where 
+                t.id = $1
+        `;
+
+        values.push(id)
+        // query += ` limit 3;`
+
+        const result = await pool.query(query, values);
+        return result.rows.length > 0 ? result.rows[0] : null;
+    } catch (error){
+        return error;
+    }
+}
+
+async function getTournamentByOrganizerID(organizerID: number) {
+    
+    
+    try{
+        if(isNaN(organizerID)) return;
+
+        const query = `
+            select id, name, sport_type, start_date, end_date, status, prize_pool 
+            from sport.tournament 
+            where organizer_id = $1
+        `;
+
+        const result = await pool.query(query, [organizerID]);
+
+        return result.rows;
+
+    } catch (error){
+        return error;
+    }
+}
+
 async function getAllTournaments(filters: TournamentFilters) {
     try{
         const values: any[] = [];
@@ -25,7 +73,7 @@ async function getAllTournaments(filters: TournamentFilters) {
             paramIndex++;
         }
 
-        query += ` limit 3;`
+        // query += ` limit 3;`
 
         const result = await pool.query(query, values);
         return result.rows;
@@ -34,4 +82,8 @@ async function getAllTournaments(filters: TournamentFilters) {
     }
 }
 
-export default getAllTournaments;
+export {
+    getTournamentByID,
+    getAllTournaments,
+    getTournamentByOrganizerID
+};

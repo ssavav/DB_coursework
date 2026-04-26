@@ -71,7 +71,7 @@ td {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 50px;
-    row-gap: 10px;
+    row-gap: 20px;
     align-items: start;
     padding: 20px;
     background-color:  #DCEFF5;
@@ -90,7 +90,7 @@ td {
     color: #000;
 }
 
-.sponsor-tag a {
+.organizer-tag a {
     display: inline-block; 
     text-decoration: none; 
     color: #2196F3; 
@@ -122,7 +122,7 @@ td a:hover{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-.sponsor-tag a:hover {
+.organizer-tag a:hover {
     transform: translateY(-3px); 
     color: #1976D2; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 

@@ -4,10 +4,10 @@
 <head>
     <meta name="viewport" charset="UTF-8">
     <title>Управление Спортивными Турнирами</title>
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.png">
-    <link rel="stylesheet" href="../static/css/base.css">
-    <link rel="stylesheet" href="../static/css/tournament.css">
-    <link rel="stylesheet" href="../static/css/sponsor.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/tournament.css">
+    <link rel="stylesheet" href="/css/organizer.css">
 </head>
 
 <body>
@@ -28,9 +28,9 @@
             
         </div>
     </header>
-
+<!--  -->
     <div class="main-part">
-        <div id="sponsor-name-tag">
+        <div id="organizer-name-tag">
             fdjkf
             <!-- название турнина -->
         </div>
@@ -39,8 +39,12 @@
     
             </div>
     
-            <div class="col-8 ">
-    
+            <div class="col-8">
+                <div id="organizer-details" class="details-grid">
+                    <!-- <div class="param-name">Организатор</div> -->
+
+                    <!-- <div class="param-value sponsor-tag"><a href="sponsor.html">djskdjks</a></div> -->
+                </div>
                 
              <table>
                     <thead>
@@ -53,11 +57,11 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <td><a href="tournament.html"><strong>Бкбра турнир</strong></a></td>
+                        <!-- <td><a href="tournament.html"><strong>Бкбра турнир</strong></a></td>
                         <td>бебра спорт</td>
                         <td>12.04.04</td>
                         <td><span class="status-tag">крытшка</span></td>
-                        <td>1000 ₽</td>
+                        <td>1000 ₽</td> -->
                     </tbody>
                 </table>
             </div>
@@ -68,5 +72,7 @@
         </div>
 
     </div>
+
+    <script type="module" src="/src/organizer.ts"></script>
 </body>
 </html>

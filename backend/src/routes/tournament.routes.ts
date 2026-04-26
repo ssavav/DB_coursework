@@ -1,9 +1,11 @@
 import { Router } from "express";
-import getAllTournamentsHandler from "../controllers/tournament.controllers";
+import * as tournamentControllers from "../controllers/tournament.controllers";
 
 const tournamentRoutes = Router();
 
-tournamentRoutes.get('/', getAllTournamentsHandler);
+tournamentRoutes.get('/', tournamentControllers.getAllTournamentsHandler);
+
+tournamentRoutes.get('/:id', tournamentControllers.getTournamentByIDHandler);
 
 export default tournamentRoutes;
 
