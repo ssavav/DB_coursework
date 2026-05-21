@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Управление Спортивными Турнирами</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/tournament.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
+            </div>
+            <div class="col-6" >
+                <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
+                
+            </div>
+            
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class=" main-part">
+        <div id="tournament-name-tag">
+            Создать новый турнир
+        </div>
+        <div class="container">
+
+            <div class="col-1">
+    
+            </div>
+            <div class="col-8">
+                <div class="tournament-form-grid" style="margin-bottom: 20px; display: flex; gap: 15px;">
+                    <select id="tournament-select" style="flex: 1; padding: 10px; border-radius: 6px;">
+                        <option value="">Загрузка ваших турниров</option>
+                    </select>
+                    <button id="load-btn" class="submit-btn" style="margin: 0; width: 150px;">Выбрать</button>
+                </div>
+
+                <form id="tournament-form" class="tournament-form-grid" style="display: none;">
+                    <label class="param-name">Название турнира</label>
+                    <input type="text" id="t-name" class="param-value" required placeholder="Например: Летний кубок">
+
+                    <label class="param-name">Тип спорта</label>
+                    <input type="text" id="t-sport" class="param-value" required placeholder="Например: Футбол">
+
+                    <label class="param-name">Дата начала</label>
+                    <input type="date" id="t-start" class="param-value" required>
+
+                    <label class="param-name">Дата окончания</label>
+                    <input type="date" id="t-end" class="param-value" required>
+
+                    <label class="param-name">Призовой фонд</label>
+                    <input type="number" id="t-prize" class="param-value" min="0" placeholder="0">
+
+                    <label class="param-name">Статус</label>
+                    <select id="t-status" class="param-value">
+                        <option value="registration">Регистрация (registration)</option>
+                        <option value="active">Активен (active)</option>
+                        <option value="completed">Завершён (completed)</option>
+                        <option value="cancelled">Отменён (cancelled)</option>
+                    </select>
+
+                    <button type="submit" class="submit-btn">Сохранить изменения</button>
+                </form>
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+
+    </div>
+
+<script type="module" src="/src/organizerPanel/changeTournament.ts"></script>
+</body>
+</html>

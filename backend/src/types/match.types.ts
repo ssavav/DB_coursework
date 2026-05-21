@@ -6,7 +6,8 @@ export interface Location {
 export interface MatchFilters {
     location?: Location | undefined,
     date?: string | undefined,
-    status?: string | undefined
+    status?: string | undefined,
+    teamName?: string | undefined
 }
 
 export interface TeamPair{

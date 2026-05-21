@@ -1,6 +1,5 @@
 import * as tournamentRepository from "../repositories/tournament.repository";
 import { TournamentFilters } from "../types/tournament.types";
-// тут бизнес логика какая то как то обрабатываем полученные рещультаты
 
 async function getAllTournaments(filters: TournamentFilters){
     try{
@@ -20,7 +19,36 @@ async function getTournamentByID(id: number){
     }
 }
 
+async function getTournamentsByOrganizerID(organizerID: number){
+    try{
+        return await tournamentRepository.getTournamentsByOrganizerID(organizerID);
+    } catch(err){
+        throw err;
+    }
+}
+
+async function createTournament(organizerId: number, data: any){
+    try{
+        const res = await tournamentRepository.createTournament(organizerId, data);
+        return res;
+    } catch(error){
+        throw error;
+    }
+}
+
+async function updateTournament(tournamentId: number, organizerId: number, data: any){
+    try{
+        const res = await tournamentRepository.updateTournament(tournamentId, organizerId, data);
+        return res;
+    } catch(error){
+        throw error;
+    }
+}
+
 export {
     getTournamentByID,
-    getAllTournaments
+    getAllTournaments,
+    getTournamentsByOrganizerID,
+    createTournament,
+    updateTournament
 };

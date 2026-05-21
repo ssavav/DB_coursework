@@ -1,3 +1,4 @@
+import { updateHeaderAuth } from "./auth";
 import { CONFIG } from "./config";
 import type{ Tournament } from "./interfaces";
 
@@ -6,6 +7,7 @@ const searchBtn = document.getElementById('search-btn') as HTMLButtonElement;
 const nameInput = document.getElementById('name-inpt') as HTMLInputElement;
 const statusInput = document.getElementById('status-inpt') as HTMLInputElement;
 
+updateHeaderAuth();
 
 async function loadTournaments(nameQuery: string | null = null, status: string | null = null) {
     if(!(nameQuery || status)){
@@ -63,7 +65,6 @@ function renderTable(tournaments: Tournament[], container: HTMLTableSectionEleme
         return;
     }
 
-    console.log(tournaments.length)
     tournaments.forEach(tournament => {
         const tr = document.createElement("tr");
 

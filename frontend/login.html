@@ -13,32 +13,34 @@
 
     <header>
         <div class="container">
-            <div class="col-2">
-                
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
             </div>
-            <div class="col-6">
+            <div class="col-6" >
                 <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
                 
             </div>
             
-            <div class="col-2 login-btn">
-                <a href="login.html" сlass="login-btn"id="login-tag">Log in</a>
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
             </div>
             
         </div>
     </header>
 
     <div class="container main-part">
-        <!-- Обертка для центрирования -->
         <div class="login-wrapper">
-            <!-- Сама форма (квадратик) -->
             <form class="login-box">
                 <h2>Вход</h2>
-                <input type="text" placeholder="Логин" class="login-input" required>
-                <input type="password" placeholder="Пароль" class="login-input" required>
-                <button type="submit" class="login-submit">Войти</button>
+                <input type="text" placeholder="Логин" id="email-field" class="login-input" required>
+                <input type="password" placeholder="Пароль" id="password-field" class="login-input" required>
+                <button type="submit" id="submit-btn" class="login-submit">Войти</button>
+                <a href="registration.html" class="reg-link">Нет аккаунта? Зарегистрироваться</a>
             </form>
+
         </div>
     </div>
+    <script type="module" src="/src/login.ts"></script>
 </body>
 </html>

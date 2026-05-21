@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Управление Спортивными Турнирами</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/tournament.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
+            </div>
+            <div class="col-6" >
+                <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
+                
+            </div>
+            
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class=" main-part">
+        <div id="tournament-name-tag">
+            Создать новый турнир
+        </div>
+        <div class="container">
+
+            <div class="col-1">
+    
+            </div>
+            <div class="col-8">
+                <form id="match-form" class="tournament-form-grid">
+                    <label class="param-name">Команда 1</label>
+                    <select id="m-team1" class="param-value" required>
+                        <option value="" disabled selected>Выберите первую команду</option>
+                    </select>
+
+                    <label class="param-name">Команда 2</label>
+                    <select id="m-team2" class="param-value" required>
+                        <option value="" disabled selected>Выберите вторую команду</option>
+                    </select>
+
+                    <label class="param-name">Дата и время матча</label>
+                    <input type="datetime-local" id="m-date" class="param-value" required>
+
+                    <label class="param-name">ID Локации</label>
+                    <input type="number" id="m-location" class="param-value" required placeholder="Введите ID арены (например, 1)">
+
+                    <label class="param-name">Этап</label>
+                    <select id="m-stage" class="param-value">
+                        <option value="Групповой этап">Групповой этап</option>
+                        <option value="1/4 финала">1/4 финала</option>
+                        <option value="1/2 финала">1/2 финала</option>
+                        <option value="Финал">Финал</option>
+                    </select>
+
+                    <button type="submit" class="submit-btn" id="create-match-btn">Создать Матч</button>
+                </form>
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+
+    </div>
+
+<script type="module" src="/src/organizerPanel/createMatch.ts"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+#team-name-tag {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+
+table {
+    margin-top: 15px;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-radius: 10px;
+    text-align: left;
+    background: #DCEFF5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+th {
+    padding: 10px;
+    border-bottom: 2px solid #b2c4c9;
+    border-radius: 4px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.player-inpt-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0px 0px ;
+    padding: 20px;
+    background-color:  #DCEFF5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#add-player-btn {
+    background-color: #ffffff;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+#add-player-btn:hover {
+    background-color: #5FCF65;
+    color: white;
+    transform: translateY(-2px);
+}
+
+#name-inpt, 
+#date-inpt,
+#add-player-btn {
+    height: 2.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0;  
+    border: 2px solid #cccccc;
+    border-radius: 4px; 
+}
+
+#name-inpt {
+    width: 550px;
+    padding: 0 10px;
+}
+
+#status-inpt {
+    width: 200px;
+    padding: 0 5px;
+}
+
+#add-player-btn {
+    width: 150px;
+    padding: 0 5px;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,10 +1,9 @@
--- Отключение проверки ограничений и каскадное удаление данных перед загрузкой
 TRUNCATE TABLE sport.tournament_registration, sport.match_participant, sport.match_referee CASCADE;
 TRUNCATE TABLE sport.match, sport.player, sport.coach CASCADE;
 TRUNCATE TABLE sport.tournament CASCADE;
 TRUNCATE TABLE sport.organizer, sport.location, sport.team, sport.referee CASCADE;
 
--- Загрузка данных из CSV-файлов внутри Docker
+
 COPY sport.organizer (id, company_name, email, phone)
 FROM '/docker-data/organizer.csv'
 WITH (FORMAT csv, HEADER true, DELIMITER ',', NULL '', ENCODING 'UTF8');
@@ -48,3 +47,12 @@ WITH (FORMAT csv, HEADER true, DELIMITER ',', NULL '', ENCODING 'UTF8');
 COPY sport.match_referee (match_id, referee_id, role)
 FROM '/docker-data/match_referee.csv'
 WITH (FORMAT csv, HEADER true, DELIMITER ',', NULL '', ENCODING 'UTF8');
+
+SELECT setval('sport.organizer_id_seq', COALESCE((SELECT MAX(id) FROM sport.organizer), 1), true);
+SELECT setval('sport.location_id_seq', COALESCE((SELECT MAX(id) FROM sport.location), 1), true);
+SELECT setval('sport.team_id_seq', COALESCE((SELECT MAX(id) FROM sport.team), 1), true);
+SELECT setval('sport.referee_id_seq', COALESCE((SELECT MAX(id) FROM sport.referee), 1), true);
+SELECT setval('sport.tournament_id_seq', COALESCE((SELECT MAX(id) FROM sport.tournament), 1), true);
+SELECT setval('sport.match_id_seq', COALESCE((SELECT MAX(id) FROM sport.match), 1), true);
+SELECT setval('sport.player_id_seq', COALESCE((SELECT MAX(id) FROM sport.player), 1), true);
+SELECT setval('sport.coach_id_seq', COALESCE((SELECT MAX(id) FROM sport.coach), 1), true);

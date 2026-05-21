@@ -1,5 +1,4 @@
 import pool from '../config/db';
-// import {}
 
 async function getOrganizerByID(id: number) {
     try {
@@ -32,6 +31,24 @@ async function getOrganizerByID(id: number) {
     }
 }
 
+async function createOrganizerProfile(userId: number, companyName: string, email: string, phone: string) {
+    const query = `insert into sport.organizer (user_id, company_name, email, phone) 
+        values ($1, $2, $3, $4)`;
+    await pool.query(query, [userId, companyName, email, phone]);
+}
+
+async function getOrganizerByUserId(userId: number) {
+    try {
+        const query = `select * from sport.organizer where user_id = $1`;
+        const res = await pool.query(query, [userId]);
+        return res.rows[0] || null;
+    } catch(err) {
+        throw err;
+    }
+}
+
 export {
-    getOrganizerByID
+    getOrganizerByID,
+    createOrganizerProfile,
+    getOrganizerByUserId,
 };

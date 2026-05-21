@@ -1,6 +1,7 @@
 import { CONFIG } from "./config";
 import type { Tournament, Organizer } from "./interfaces";
 import { renderTable } from "./index";
+import { updateHeaderAuth } from "./auth";
 
 type organizerWithTournaments = Organizer & { tournaments: Tournament[]};
 
@@ -10,9 +11,10 @@ const urlParams = new URLSearchParams(queryString);
 
 const organizerID = urlParams.get('id');
 
+// updateHeaderAuth()
 
 if (!organizerID) {
-    //  ААААААААААААА ВЫСРАТЬ ОШИБКУ ААААААААААА
+    //  ААААААААААААА ОШИБКУ ААААААААААА
     // document.body.innerHTML = "<h1>Ошибка: Турнир не найден!</h1> <a href='/'>На главную</a>";
 } else {
     loadTournamentDetails(organizerID);
@@ -28,7 +30,6 @@ async function loadTournamentDetails(id:string) {
         renderOrganizerPage(data);
     } catch(error){
         console.log(error);
-        // ААААААААА ВЫСРАТЬ ОШИБКУ ААААААААААА
     }
 }
 

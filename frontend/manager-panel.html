@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Управление Спортивными Турнирами</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/organizer-panel.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
+            </div>
+            <div class="col-6" >
+                <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
+                
+            </div>
+            
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class="container main-part">
+        <div class="panel-wrapper">
+            <div class="panel-box">
+                <h1>Панель управления</h1>
+                <!-- <input type="text" placeholder="Логин" class="login-input" required> -->
+                <!-- <input type="password" placeholder="Пароль" class="login-input" required> -->
+                <div class="func-list">
+                    <button id="team-control-btn" class="action-btn">Изменить состав команды</button>
+                    <button id="tournament-register-btn" class="action-btn">Подать заявку на участие в турнире</button>
+                    <button id="check-tournament-registrations-btn" class="action-btn">Просмотреть заявки на участие в турнире</button>
+                </div>
+                <!-- <a href="registration.html" class="reg-link">Нет аккаунта? Зарегистрироваться</a> -->
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="/src/managerPanel/managerPanel.ts"></script>
+</body>
+</html>

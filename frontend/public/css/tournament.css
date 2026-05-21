@@ -130,7 +130,7 @@ td a:hover{
 
 
 .badge{
-    width: 80px;
+    width: 85px;
     text-align: center;
     padding: 4px 10px; 
     display: inline-block;
@@ -150,7 +150,6 @@ td a:hover{
     }
     100%{
         background-color: #4CAF50;
-        /* background-color: #3d8b40; */
 
     }
 }
@@ -161,14 +160,59 @@ td a:hover{
 
 }
 
-.badge.registration { 
-    background-color: #FF9800; /* Оранжевый (ил можно использовать ваш синий #2196F3) */
+.badge.registration,
+.badge.scheduled { 
+    background-color: #FF9800;
 }
 
 .badge.completed {
-    background-color: #9E9E9E; /* Спокойный серый */
+    background-color: #9E9E9E;
 }
 
 .badge.cancelled {
-    background-color: #F44336; /* Красный */
+    background-color: #F44336;
+}
+
+.tournament-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    align-items: center;
+    padding: 30px;
+    background-color: #DCEFF5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tournament-form-grid .param-name {
+    margin: 0; 
+}
+
+.tournament-form-grid input,
+.tournament-form-grid select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #b2c4c9;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.tournament-form-grid .submit-btn {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.tournament-form-grid .submit-btn:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
 }

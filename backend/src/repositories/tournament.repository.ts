@@ -1,5 +1,4 @@
 import pool from '../config/db'
-import organizerRoutes from '../routes/organizer.routes';
 import { TournamentFilters } from '../types/tournament.types';
 
 
@@ -28,7 +27,7 @@ async function getTournamentByID(id: number) {
     }
 }
 
-async function getTournamentByOrganizerID(organizerID: number) {
+async function getTournamentsByOrganizerID(organizerID: number) {
     
     
     try{
@@ -82,8 +81,54 @@ async function getAllTournaments(filters: TournamentFilters) {
     }
 }
 
+async function createTournament(organizerId: number, data: any) {
+    try {
+        const query = `
+            insert into sport.tournament 
+            (organizer_id, name, sport_type, start_date, end_date, prize_pool, status) 
+            values ($1, $2, $3, $4, $5, $6, $7) returning *;
+        `;
+        const values = [
+            organizerId, data.name, data.sport_type, data.start_date, 
+            data.end_date, data.prize_pool, data.status
+        ];
+        const result = await pool.query(query, values);
+        return result.rows[0];
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function updateTournament(tournamentId: number, organizerId: number, data: any) {
+    try {
+        const query = `
+            update sport.tournament 
+            set name = coalesce($1, name),
+                sport_type = coalesce($2, sport_type),
+                start_date = coalesce($3, start_date),
+                end_date = coalesce($4, end_date),
+                prize_pool = coalesce($5, prize_pool),
+                status = coalesce($6, status)
+            where id = $7 
+              and organizer_id = $8
+            returning *;
+        `;
+        const values = [
+            data.name, data.sport_type, data.start_date, 
+            data.end_date, data.prize_pool, data.status, 
+            tournamentId, organizerId
+        ];
+        const result = await pool.query(query, values);
+        return result.rows[0];
+    } catch (error) {
+        throw error;
+    }
+}
+
 export {
     getTournamentByID,
     getAllTournaments,
-    getTournamentByOrganizerID
+    getTournamentsByOrganizerID,
+    createTournament,
+    updateTournament
 };

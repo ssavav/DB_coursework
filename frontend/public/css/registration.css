@@ -1,0 +1,14 @@
+.reg-link{
+    display: flex;
+    justify-content: center;
+}
+
+.role-fields-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hidden {
+    display: none !important;
+}

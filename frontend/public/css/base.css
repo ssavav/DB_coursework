@@ -41,7 +41,10 @@ header {
     gap: 10px;
 }
 
-#login-tag {
+#login-tag,
+#control-tag,
+#tournament-ref,
+#match-ref {
     font-size: 20px;
     font-weight: bold;
     text-decoration: none; 
@@ -52,7 +55,10 @@ header {
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
-#login-tag:hover {
+#login-tag:hover,
+#control-tag:hover,
+#tournament-ref:hover,
+#match-ref:hover {
     background-color: lightblue;
     color: white;
     transform: translateY(-2px);

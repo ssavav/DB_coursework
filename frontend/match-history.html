@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Управление Спортивными Турнирами</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/match-history.css">
+    <!-- <link rel="stylesheet" href="/css/tournament.css"> -->
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
+            </div>
+            <div class="col-6" >
+                <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
+                
+            </div>
+            
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class="main-part">
+        <div id="title-name-tag">
+            История встреч команд
+        </div>
+        <div class="container">
+
+            <div class="col-1">
+    
+            </div>
+    
+            <div class="col-8">
+                <div class="player-inpt-group">
+                    <input type="text" class="team-inpt" id="team1-inpt" placeholder="Введите название команды">
+                    <input type="text" class="team-inpt" id="team2-inpt" placeholder="Введите название команды">
+
+
+                    <button id="search-btn">
+                        Посмотреть историю встреч
+                    </button>
+                </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Команда 1</th>
+                        <th>Команда 2</th>
+                        <th>Счет</th>
+                        <th>Победитель</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                 
+                </tbody>
+            </table>
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="/src/matchPanel/matchHistory.ts"></script>
+</body>
+</html>

@@ -21,6 +21,23 @@ const getOrganizerByIDHandler = async (req: Request, res: Response) =>{
     }
 }
 
+const getOrganizerByUserIdHandler = async (req: Request, res: Response) => {
+    try {
+        const userId = Number(req.params.userId);
+        if (isNaN(userId)) return res.status(400).json({ error: "Invalid user ID" });
+
+        const organizer = await organizerServices.getOrganizerByUserId(userId);
+        if (!organizer) return res.status(404).json({ error: "Organizer not found" });
+
+        res.status(200).json(organizer);
+    } catch(err) {
+        res.status(500).json({ error: "Server error" });
+    }
+}
+
+
+
 export {
-    getOrganizerByIDHandler
+    getOrganizerByIDHandler,
+    getOrganizerByUserIdHandler,
 };

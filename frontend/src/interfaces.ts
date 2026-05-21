@@ -16,3 +16,9 @@ export interface Organizer {
     email: string;
     phone: string;
 }
+
+export interface JWTPayload {
+    id: number;
+    role: string;
+    exp: number;
+}

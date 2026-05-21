@@ -10,19 +10,19 @@
 </head>
 
 <body>
-
     <header>
         <div class="container">
-            <div class="col-1">
-                
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
             </div>
-            <div class="col-8">
+            <div class="col-6" >
                 <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
                 
             </div>
             
-            <div class="col-1 login-btn">
-                <a href="login.html" сlass="login-btn"id="login-tag">Log in</a>
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
             </div>
             
         </div>
@@ -31,7 +31,6 @@
     <div class=" main-part">
         <div id="tournament-name-tag">
 
-            <!-- название турнина -->
         </div>
         <div class="container">
 
@@ -44,6 +43,26 @@
                     <!-- <div class="param-name">Организатор</div>
 
                     <div class="param-value sponsor-tag"><a href="sponsor.html">djskdjks</a></div> -->
+                </div>
+
+                <div style="margin-top: 40px; margin-bottom: 50px;">
+                    <h2 style="text-align: center; color: #333;">Матчи турнира</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Этап</th>
+                                <th>Статус</th>
+                                <th>Команда 1</th>
+                                <th>Команда 2</th>
+                                <th>Счет</th>
+                                <th>Победитель</th>
+                                <th>Дата</th>
+                                <th>Место</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matchesTableBody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="col-1">

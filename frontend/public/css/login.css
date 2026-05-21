@@ -47,3 +47,8 @@
 .login-submit:hover {
     background-color: #1976D2; 
 }
+
+.reg-link{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,64 @@
+.panel-wrapper {
+    grid-column: span 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+}
+
+.panel-box {
+    background-color: #DCEFF5;
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 700px;
+    height: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    justify-content: space-evenly;
+}
+
+.func-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;  
+    justify-content: space-evenly; 
+    align-items: center; 
+}
+.panel-box h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 32px;
+}
+
+.login-input {
+    height: 2.5rem;
+    box-sizing: border-box;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    padding: 0 10px;
+    width: 100%; 
+}
+
+.action-btn {
+    height: 3.5rem;
+    background-color: #44a9fc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; 
+}
+
+.action-btn:hover {
+    background-color: #1976D2; 
+}
+
+.reg-link{
+    display: flex;
+    justify-content: center;
+}

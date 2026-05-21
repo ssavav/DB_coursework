@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Управление Спортивными Турнирами</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/tournament.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="col-2 login-btn">
+                <a href="index.html" сlass="login-btn" id="tournament-ref">Турниры</a>
+                 <a href="match-panel.html" сlass="login-btn" id="match-ref">Матчи</a>
+            </div>
+            <div class="col-6" >
+                <a href="index.html" id="title-tag">Система Управления Спортивными Турнирами</a>
+                
+            </div>
+            
+            <div id="auth-area" class="col-2 login-btn">
+                <a href="login.html"  id="login-tag">Log in</a>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class=" main-part">
+        <div id="tournament-name-tag">
+            Создать новый турнир
+        </div>
+        <div class="container">
+
+            <div class="col-1">
+    
+            </div>
+            <div class="col-8">
+                <div style="margin-top: 40px; margin-bottom: 50px;">
+                    <h2 style="text-align: center; color: #333;">Матчи турнира</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Этап</th>
+                                <th>Статус</th>
+                                <th>Команда 1</th>
+                                <th>Команда 2</th>
+                                <th>Счет</th>
+                                <th>Дата</th>
+                                <th>Место</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matchesTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <form id="match-edit-form" class="tournament-form-grid" style="display: none;">
+                    <h3 style="grid-column: 1 / -1; text-align: center;">Редактирование матча <span id="m-edit-title"></span></h3>
+
+                    <label class="param-name">Счет <span id="lbl-team1">Команды 1</span></label>
+                    <input type="number" id="m-team1-score" class="param-value" min="0" placeholder="Оставьте пустым, если счет неизвестен">
+
+                    <label class="param-name">Счет <span id="lbl-team2">Команды 2</span></label>
+                    <input type="number" id="m-team2-score" class="param-value" min="0" placeholder="Оставьте пустым, если счет неизвестен">
+
+                    <label class="param-name">Дата и время</label>
+                    <input type="datetime-local" id="m-date" class="param-value" required>
+
+                    <label class="param-name">ID Локации</label>
+                    <input type="number" id="m-location" class="param-value" required>
+
+                    <label class="param-name">Этап</label>
+                    <select id="m-stage" class="param-value" required>
+                        <option value="Групповой этап">Групповой этап</option>
+                        <option value="1/4 финала">1/4 финала</option>
+                        <option value="1/2 финала">1/2 финала</option>
+                        <option value="Финал">Финал</option>
+                    </select>
+
+                    <label class="param-name">Статус</label>
+                    <select id="m-status" class="param-value">
+                        <option value="scheduled">Запланирован</option>
+                        <option value="ongoing">Активен (идёт)</option>
+                        <option value="finished">Завершён</option>
+                        <option value="cancelled">Отменён</option>
+                    </select>
+
+                    <button type="submit" class="submit-btn" id="save-match-btn">Сохранить изменения</button>
+                </form>
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+
+    </div>
+
+<script type="module" src="/src/organizerPanel/changeMatch.ts"></script>
+</body>
+</html>
